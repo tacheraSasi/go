@@ -22,6 +22,7 @@ import (
 	"cmd/go/internal/bug"
 	"cmd/go/internal/cfg"
 	"cmd/go/internal/clean"
+	"cmd/go/internal/create"
 	"cmd/go/internal/doc"
 	"cmd/go/internal/envcmd"
 	"cmd/go/internal/fmtcmd"
@@ -52,6 +53,7 @@ func init() {
 		bug.CmdBug,
 		work.CmdBuild,
 		clean.CmdClean,
+		create.CmdCreate,
 		doc.CmdDoc,
 		envcmd.CmdEnv,
 		vet.CmdFix,
