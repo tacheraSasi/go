@@ -1,4 +1,4 @@
-// Copyright 2026 The Go Authors. All rights reserved.
+// Copyright 2026 The Tachera Sasi. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -65,7 +65,7 @@ func runCreate(ctx context.Context, cmd *base.Command, args []string) {
 
 	// Handle "go create list"
 	if args[0] == "list" {
-		fmt.Println("Available templates:\n")
+		fmt.Println("Available templates:")
 		order := []string{"cli", "api", "microservice", "web", "lib", "grpc"}
 		for _, name := range order {
 			t := templates[name]
