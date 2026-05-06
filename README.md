@@ -1,42 +1,101 @@
-# The Go Programming Language
+# My Go — A Custom Go Toolchain
 
-Go is an open source programming language that makes it easy to build simple,
-reliable, and efficient software.
+> **By [tacherasasi](https://github.com/tacherasasi)**
+
+A custom build of the [Go programming language](https://go.dev) with additional developer experience features built on top of the official toolchain. Syncs with upstream [golang/go](https://github.com/golang/go) so you always get the latest Go releases plus extra tools.
 
 ![Gopher image](https://golang.org/doc/gopher/fiveyears.jpg)
-*Gopher image by [Renee French][rf], licensed under [Creative Commons 4.0 Attribution license][cc4-by].*
+_Gopher image by [Renee French][rf], licensed under [Creative Commons 4.0 Attribution license][cc4-by]._
 
-Our canonical Git repository is located at https://go.googlesource.com/go.
-There is a mirror of the repository at https://github.com/golang/go.
+---
 
-Unless otherwise noted, the Go source files are distributed under the
-BSD-style license found in the LICENSE file.
+## What's Different?
 
-### Download and Install
+This fork adds new subcommands to the `go` CLI that don't exist in standard Go.
 
-#### Binary Distributions
+### `go create` — Project Scaffolding
 
-Official binary distributions are available at https://go.dev/dl/.
+Scaffold a new Go project in one command. No more copy-pasting boilerplate.
 
-After downloading a binary release, visit https://go.dev/doc/install
-for installation instructions.
+```bash
+go create <template> <module-path>
+```
 
-#### Install From Source
+**Example:**
 
-If a binary distribution is not available for your combination of
-operating system and architecture, visit
-https://go.dev/doc/install/source
-for source installation instructions.
+```bash
+go create api github.com/tacherasasi/myapi
+# Creates ./myapi with a full REST API project ready to go
+```
+
+**Available templates:**
+
+| Template       | What you get                                                             |
+| -------------- | ------------------------------------------------------------------------ |
+| `cli`          | CLI app with subcommands, flags, help text, `.gitignore`, README         |
+| `api`          | REST API with routing, CRUD handlers, logging & CORS middleware          |
+| `microservice` | HTTP service with graceful shutdown, health/readiness probes, Dockerfile |
+| `web`          | Web server with `embed.FS`, HTML templates, static CSS                   |
+| `lib`          | Library package with tests, examples, and doc comments                   |
+| `grpc`         | gRPC scaffold with `.proto` file and placeholder server                  |
+
+Run `go create list` to see all templates from the command line.
+
+---
+
+## Install From Source
+
+You need Go 1.22.6+ installed as a bootstrap compiler.
+
+```bash
+git clone https://github.com/tacherasasi/my-go.git
+cd my-go/src
+./make.bash
+```
+
+Then add the binary to your PATH:
+
+```bash
+export PATH=$HOME/path/to/my-go/bin:$PATH
+```
+
+Verify:
+
+```bash
+go version
+go create list
+```
+
+## Staying Up to Date with Upstream Go
+
+This repo tracks upstream Go. To pull the latest changes:
+
+```bash
+git fetch upstream
+git merge upstream/master
+```
+
+Then rebuild:
+
+```bash
+cd src && ./make.bash
+```
+
+---
+
+## Upstream Go
+
+This is built on top of the official Go toolchain. Everything from standard Go works as expected.
+
+- Official Go: https://go.dev
+- Source: https://github.com/golang/go
+- Docs: https://go.dev/doc
 
 ### Contributing
 
-Go is the work of thousands of contributors. We appreciate your help!
+Ideas for new templates or features? Open an issue or PR.
 
-To contribute, please read the contribution guidelines at https://go.dev/doc/contribute.
-
-Note that the Go project uses the issue tracker for bug reports and
-proposals only. See https://go.dev/wiki/Questions for a list of
-places to ask questions about the Go language.
+If you want to contribute to Go itself, see the [Go contribution guide](https://go.dev/doc/contribute).
 
 [rf]: https://reneefrench.blogspot.com/
 [cc4-by]: https://creativecommons.org/licenses/by/4.0/
